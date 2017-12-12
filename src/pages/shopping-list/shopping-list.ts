@@ -18,8 +18,8 @@ export class ShoppingListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ShoppingListPage');
+  onAddItem(form){
+    console.log(form.value);
   }
 
 }
