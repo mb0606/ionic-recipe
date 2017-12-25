@@ -49,7 +49,15 @@ export class EditRecipePage implements OnInit{
               for(let i = len-1; i >= 0; i--){
                 fArray.removeAt(i);
               }
-            }
+              // create toast
+              const toast = this.toastCtl.create({
+                message: 'All items deleted!', 
+                duration: 1000,
+                position: 'bottom'
+              });
+              // call present toast to display
+              toast.present();
+              }
           }
         },
         {
@@ -64,7 +72,7 @@ private createNewIngredientAlert(){
   return this.alertCtrl.create({
     title: 'Add Ingredient',
     inputs:[
-      {name: 'name', placeholder: 'Name'}
+      {name: 'name', placeholder: 'Name'},
     ],
     buttons: [
       {
@@ -75,15 +83,26 @@ private createNewIngredientAlert(){
         text: 'Add',
         handler: data => {
           if (data.name.trim() == '' || data.name == null){
+            // create toast
             const toast = this.toastCtl.create({
               message: 'Please enter a valid value!', 
               duration: 1000,
               position: 'bottom'
             });
+            // call present toast to display
+            toast.present();
             return;
           }
           (<FormArray>this.recipeForm.get('ingredients'))
             .push(new FormControl(data.name, Validators.required))
+              // create toast
+              const toast = this.toastCtl.create({
+                message: 'Item added!', 
+                duration: 1000,
+                position: 'bottom'
+              });
+              // call present toast to display
+              toast.present();
         }
       }
     ]
