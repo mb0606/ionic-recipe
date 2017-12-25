@@ -1,16 +1,18 @@
-import { ShoppingListService } from './../services/shopping-list.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+// Pages
 import { MyApp } from './app.component';
 import { TabsPage } from './../pages/tabs/tabs';
 import { ShoppingListPage } from './../pages/shopping-list/shopping-list';
 import { RecipesPage } from './../pages/recipes/recipes';
 import { RecipePage } from './../pages/recipe/recipe';
 import { EditRecipePage } from './../pages/edit-recipe/edit-recipe';
+// Services
+import { RecipeService } from '../services/recipes.service';
+import { ShoppingListService } from './../services/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { EditRecipePage } from './../pages/edit-recipe/edit-recipe';
     StatusBar,
     SplashScreen,
     ShoppingListService,
+    RecipeService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
