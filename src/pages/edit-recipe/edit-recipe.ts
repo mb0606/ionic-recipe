@@ -1,5 +1,7 @@
+import { Ingredient } from './../../models/ingredient';
+import { RecipeServices } from './../../services/recipes.service';
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavParams, ToastController, NavController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, FormArray  } from '@angular/forms';
 import { ActionSheetController, AlertController} from 'ionic-angular';
 
@@ -17,7 +19,9 @@ export class EditRecipePage implements OnInit{
   constructor(private navParams: NavParams,
               private actionSheetController: ActionSheetController,
               private alertCtrl: AlertController,
-              private toastCtl: ToastController) {
+              private toastCtl: ToastController,
+              private recipesService: RecipeServices,
+              private navCtrl: NavController) {
   }
 
   ngOnInit(){
@@ -26,7 +30,18 @@ export class EditRecipePage implements OnInit{
     this.initForm();
   }
   onSubmit(){
-    console.log(this.recipeForm)
+    const value= this.recipeForm.value
+    let ingredients = [];
+    if(value.ingredients.length > 0){
+      ingredients = value.ingredients.map(name => {
+        return {name: name, amount: 1};
+      })
+    }
+    console.log("difficulty", value.difficulty);
+    this.recipesService.addRecipe(value.title, value.description, value.difficulty, ingredients);
+    console.log(this.recipesService.getRecipes());
+    this.recipeForm.reset();
+    this.navCtrl.pop();
   }
 
   onManageIngredients(){
@@ -113,9 +128,9 @@ private createNewIngredientAlert(){
     this.recipeForm = new FormGroup({
       'title': new FormControl(null, Validators.required),
       'description': new FormControl(null, Validators.required),
-      'difficulty': new FormControl("Medium", Validators.required),
+      'difficulty': new FormControl('Medium', Validators.required),
       'ingredients': new FormArray([])
-    })
+    });
   }
 
 }

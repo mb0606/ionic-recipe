@@ -1,14 +1,15 @@
 import { Ingredient } from './../models/ingredient';
 import { Recipe } from "../models/recipe";
 
-export class RecipeService {
+export class RecipeServices {
     private recipes: Recipe[] = [];
 
     addRecipe(title: string,
-              description: string,
-              difficulty: string,
-              ingredients: Ingredient[]){
-        this.recipes.push(new Recipe(title, description, difficulty, ingredients));
+        description: string,
+        difficulty: string,
+        ingredients: Ingredient[]) {
+    this.recipes.push(new Recipe(title, description, difficulty, ingredients));
+    console.log("In recipe service", this.recipes);
     }
     addRecipes(recipes: Recipe[]){
         this.recipes.push(...recipes);

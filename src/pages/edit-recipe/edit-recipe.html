@@ -22,16 +22,16 @@
         <ion-label floating>Description</ion-label>
         <ion-textarea formControlName="description"></ion-textarea>
       </ion-item>  
-      <ion-item >
-        <ion-label floating>Difficulty</ion-label>  
-        <ion-select formControlName="difficulty">
-          <ion-option *ngFor="let option of selectOptions" [value]="option">
-              {{option}}
-          </ion-option>
-        </ion-select>
-      </ion-item> 
+      <ion-item>
+          <ion-label floating>Difficulty</ion-label>
+          <ion-select formControlName="difficulty">
+            <ion-option
+              *ngFor="let option of selectOptions"
+              [value]="option">{{ option }}</ion-option>
+          </ion-select>
+        </ion-item>
     </ion-list>
-    <button tyoe="button" 
+    <button type="button" 
       clear ion-button block 
       (click)="onManageIngredients()">
       Manage Ingredients</button>
