@@ -38,6 +38,7 @@
     <ion-list formArrayName="ingredients">
       <ion-item 
         *ngFor="let igControl of recipeForm.get('ingredients').controls; let i = index">
+        
         <ion-label floating>Name</ion-label>
         <ion-input type="text"[formControlName]="i"></ion-input>
       </ion-item>
