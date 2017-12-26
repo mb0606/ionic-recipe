@@ -22,5 +22,10 @@ export class RecipePage implements OnInit{
   ngOnInit(){
     this.recipe = this.navParams.data
   }
+  onAddIngredients(){
+    
+  }
+  onEditRecipe(){}
+  onDeleteRecipe(){}
 
 }
